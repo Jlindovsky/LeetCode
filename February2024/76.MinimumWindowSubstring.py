@@ -1,4 +1,5 @@
 """"
+Difficulty: Hard
 Description:
 Given two strings s and t of lengths m and n respectively,
 return the minimum window substring of s such that every 
@@ -45,7 +46,6 @@ class Solution:
 
         return finalSub
 
-
 def main():
 
     solution = Solution()
@@ -53,7 +53,6 @@ def main():
     input_t = "aa"
     result = solution.minWindow(input_s, input_t)
     print("Minimum window:", result)
-
 
 if __name__ == "__main__":
     main()
