@@ -5,6 +5,8 @@ and a value to insert into the tree. Return the root node
 of the BST after the insertion. It is guaranteed that
 the new value does not exist in the original BST.
  */
+
+#include <iostream>
 struct TreeNode
 {
     int val;
@@ -34,3 +36,24 @@ public:
         return root;
     }
 };
+
+int main()
+{
+    // sample binary search tree
+    TreeNode *root = new TreeNode(4);
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(7);
+    root->left->left = new TreeNode(1);
+    root->left->right = new TreeNode(3);
+
+    // instance of the Solution class
+    Solution solution;
+
+    // Inserting a new value into the BST
+    int newValue = 5;
+    root = solution.insertIntoBST(root, newValue);
+
+    std::cout << "Root value: " << root->val << std::endl;
+
+    return 0;
+}

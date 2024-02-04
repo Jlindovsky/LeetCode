@@ -8,6 +8,7 @@ Return a 2D array containing all the arrays.
 If it is impossible to satisfy the conditions,
 return an empty array. And if there are multiple answers, return any of them.
 */
+#include <iostream>
 #include <vector>
 #include <algorithm>
 
@@ -71,3 +72,28 @@ public:
         }
     }
 };
+
+int main()
+{
+    // integer array and positive integer k
+    std::vector<int> nums = {1, 4, 5, 8, 9, 12, 15};
+    int k = 4;
+
+    // instance of the Solution class
+    Solution solution;
+
+    // Dividing the array
+    std::vector<std::vector<int>> result = solution.divideArray(nums, k);
+
+    std::cout << "Result 2D Array:" << std::endl;
+    for (const auto &subarray : result)
+    {
+        for (const auto &element : subarray)
+        {
+            std::cout << element << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    return 0;
+}

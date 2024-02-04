@@ -44,3 +44,24 @@ public:
         return result;
     }
 };
+
+int main()
+{
+    int low = 100;
+    int high = 3000;
+
+    // instance of the Solution class
+    Solution solution;
+
+    // sorted sequential digits within the specified range
+    std::vector<int> result = solution.sequentialDigits(low, high);
+
+    std::cout << "Sorted Sequential Digits in the Range [" << low << ", " << high << "]:" << std::endl;
+    for (const auto &num : result)
+    {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
