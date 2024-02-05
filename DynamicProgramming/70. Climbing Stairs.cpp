@@ -1,4 +1,5 @@
 /*
+Complexity: O(n)
 Difficulty: Easy
 Description:
 You are climbing a staircase.
