@@ -1,11 +1,12 @@
 /*
-Complexity: O(n)
 Difficulty: Easy
 Description:
-You are climbing a staircase.
-It takes n steps to reach the top.
-Each time you can either climb 1 or 2 steps.
-In how many distinct ways can you climb to the top?
+The Fibonacci numbers, commonly denoted F(n) form a sequence,
+called the Fibonacci sequence, such that each number is
+the sum of the two preceding ones, starting from 0 and 1. That is,
+F(0) = 0, F(1) = 1
+F(n) = F(n - 1) + F(n - 2), for n > 1.
+Given n, calculate F(n).
  */
 
 #include <vector>
@@ -15,25 +16,23 @@ In how many distinct ways can you climb to the top?
 class Solution
 {
 public:
-    int climbStairs(int n)
+    int fib(int n)
     {
-        if (n <= 2)
-        {
+        if (n < 1)
             return n;
-        }
         // vector size of n+1 filled with zeros
-        std::vector<int> dp(n + 1, 0);
-        dp[1] = 1;
-        dp[2] = 2;
+        std::vector<int> F(n + 1, 0);
+        F[0] = 0;
+        F[1] = 1;
 
-        for (int i = 3; i <= n; ++i)
+        for (int i = 2; i <= n; ++i)
         {
             // to dp[i] we can come from previous step
             // or from one from previous, thats why we need to add them
-            dp[i] = dp[i - 1] + dp[i - 2];
+            F[i] = F[i - 1] + F[i - 2];
         }
 
-        return dp[n];
+        return F[n];
     }
 };
 
@@ -44,7 +43,7 @@ int main()
     // instance of the Solution class
     Solution solution;
     // sorted sequential digits within the specified range
-    int result = solution.climbStairs(num);
+    int result = solution.fib(num);
 
     std::cout << result;
 
