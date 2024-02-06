@@ -20,6 +20,23 @@ class Solution
 public:
     int uniquePaths(int m, int n)
     {
+        // Function to calculate combination
+        auto combination = [&](int n, int r) -> long long
+        {
+            long long result = 1;
+            for (int i = 1; i <= r; ++i)
+            {
+                result *= n - (r - i);
+                result /= i;
+            }
+            return result;
+        };
+        // up in combination number is steps needed to go to destination - m+n-2
+        // down in combination number is number of down or right steps to reach down or right
+        // order of stpes doesnt metter so we have combination
+        long long result = combination(m + n - 2, std::min(m - 1, n - 1));
+
+        return static_cast<int>(result);
     }
 };
 
