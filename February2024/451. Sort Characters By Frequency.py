@@ -10,9 +10,12 @@ class Solution:
     def frequencySort(self, s: str) -> str:
         charCount = {}
         result = []
+        # dictionary for number of chars in string
         for char in s:
             charCount[char] = charCount.get(char, 0) + 1
+        # sorted dictionary from biggerst to lowest value
         sortedCount = dict(sorted(charCount.items(), key=lambda x: x[1],  reverse=True))
+
         for char, count in sortedCount.items():
             for i in range(count):
                 result.append(char)
