@@ -1,5 +1,6 @@
 """"
 Difficulty: Medium
+Topics: Hash Table, String, Sorting,, Heap (Priority Queue), Bucket Sort, Counting
 Description:
 Given a string s, sort it in decreasing order basedon the frequency of the characters.
 The frequency of a character is the number of times it appears in the string.

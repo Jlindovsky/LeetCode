@@ -1,5 +1,6 @@
 /*
 Difficulty: Medium
+Topics: Array, Dynamic Programming
 Description:
 Given an integer array arr, partition the array into (contiguous)
 subarrays of length at most k. After partitioning, each subarray

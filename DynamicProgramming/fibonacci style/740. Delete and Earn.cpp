@@ -1,5 +1,6 @@
 /*
 Difficulty: Medium
+Topics: Array,Hash Table, Dynamic Programming
 Description:
 You are given an integer array nums.
 You want to maximize the number of points you

@@ -1,6 +1,6 @@
 /*
-Complexity: O(n)
 Difficulty: Easy
+Topics: Math, Dynamic Programming, Memoization
 Description:
 You are climbing a staircase.
 It takes n steps to reach the top.

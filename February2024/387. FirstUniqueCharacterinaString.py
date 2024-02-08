@@ -1,5 +1,6 @@
 """"
 Difficulty: Easy
+Topics: Hash Table, String, Queue, Counting
 Description:
 Given a string s, find the first non-repeating
 character in it and return its index.

@@ -1,5 +1,6 @@
 /*
 Difficulty: Medium
+Topics: Array, Dynamic Programming, Matrix
 Description:
 There is a robot on an m x n grid.
 The robot is initially located at the
