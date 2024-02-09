@@ -30,7 +30,7 @@ public:
         {
             for (int j = 0; j < i; ++j)
             {
-                // add if it is divisible and add to largrst vector
+                // add if it is divisible and add to largest vector
                 if (nums[i] % nums[j] == 0 && dp[i].size() < dp[j].size() + 1)
                     dp[i] = dp[j];
             }
