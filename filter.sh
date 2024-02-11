@@ -2,9 +2,15 @@
 help_function(){
     echo "Usage: $0 [-d <difficulty>] [-s <suffix>] [-t <topic>] [-h]"
     echo ""
-    echo "  -d <difficulty>  Filter files by difficulty         Easy, Medium, Hard"
-    echo "  -s <suffix>      Filter files by language           .cpp, .py"
-    echo "  -t <topic>       Filter files by topic              Math, Dynamic Programing, Array"
+    echo "  -d <difficulty>  Filter files by difficulty:     Easy, Medium, Hard"
+    echo ""  
+    echo "  -s <suffix>      Filter files by language:       .cpp, .py"
+    echo ""  
+    echo "  -t <topic>       Filter files by topic:              
+                             Array, String, Hash Table, Dynamic Programming, Math, Sorting, Greedy,
+                             Depth-First Search, Binary Search, Tree, Matrix, Two Pointers, Bit Manipulation,
+                             Binary Tree, Heap, Stack, ..."
+    echo ""                        
     echo "  -h               Display this help message"
     echo ""
 }
