@@ -9,7 +9,7 @@ Pick any nums[i] and delete it to earn nums[i] points.
 Afterwards, you must delete every element equal to nums[i] - 1
 and every element equal to nums[i] + 1. Return the maximum number
 of points you can earn by applying the above operation some number of times.
- */
+*/
 
 #include <vector>
 #include <algorithm>

@@ -1,7 +1,8 @@
 /*
 Difficulty: Easy
 Topics: Array, Binary Search
-Description: Four basic binary searches
+Description:
+Four basic binary searches
 */
 
 #include <iostream>
