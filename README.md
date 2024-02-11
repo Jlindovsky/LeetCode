@@ -16,4 +16,8 @@ Feel free to explore the solutions and learn from them!
 
 ---
 
+`filter.sh` can be used to filter through files. Use -h to show help with instructions. The script provides functionality to search for specific content or patterns within files.
+
+---
+
 **Note**: Make sure to check the problem statements and test cases on [LeetCode](https://leetcode.com/) before referring to the solutions. Using these solutions for plagiarism or cheating on LeetCode contests is strictly prohibited.
