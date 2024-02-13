@@ -11,7 +11,7 @@ help_function(){
                              Depth-First Search, Binary Search, Tree, Matrix, Two Pointers, Bit Manipulation,
                              Binary Tree, Heap, Stack, ..."
     echo ""     
-    echo "  -a               Show only descriptions of filtered files, it need to be used with other flags"
+    echo "  -a               Show descriptions of filtered files, it need to be used with other flags"
     echo ""                   
     echo "  -h               Display this help message"
     echo ""
@@ -160,3 +160,4 @@ if [ -n "$show" ]; then
 else
     echo "$found_files"    
 fi
+

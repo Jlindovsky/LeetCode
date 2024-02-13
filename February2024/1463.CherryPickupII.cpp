@@ -27,9 +27,8 @@ using namespace std;
 class Solution
 {
 public:
-    int columnMovements[3] = {
-        0, -1, 1};                    // Array to represent changes in column indices
-    int memoizationTable[71][71][71]; // Memoization table
+    int columnMovements[3] = {0, -1, 1}; // Array to represent changes in column indices
+    int memoizationTable[71][71][71];    // Memoization table
 
     // Depth-first search function to find the maximum number of cherries picked
     int dfs(vector<vector<int>> &grid, int row, int picker1Col, int picker2Col,
@@ -91,11 +90,11 @@ int main()
     Solution solution;
 
     // Input grid
-    vector<vector<int>> grid = {
-        {3, 1, 1},
-        {2, 5, 1},
-        {1, 5, 5},
-        {2, 1, 1}};
+    vector<vector<int>> grid;
+    grid.push_back({3, 1, 1});
+    grid.push_back({2, 5, 1});
+    grid.push_back({1, 5, 5});
+    grid.push_back({2, 1, 1});
 
     // Call the cherryPickup function and print the result
     int maxCherries = solution.cherryPickup(grid);
