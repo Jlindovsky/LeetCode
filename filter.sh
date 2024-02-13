@@ -1,6 +1,6 @@
 #!/bin/bash
 help_function(){
-    echo "Usage: $0 [-d <difficulty>] [-s <suffix>] [-t <topic>] [-h]"
+    echo "Usage: $0 [-d <difficulty>] [-s <suffix>] [-t <topic>] [-a]"
     echo ""
     echo "  -d <difficulty>  Filter files by difficulty:     Easy, Medium, Hard"
     echo ""  
@@ -10,22 +10,21 @@ help_function(){
                              Array, String, Hash Table, Dynamic Programming, Math, Sorting, Greedy,
                              Depth-First Search, Binary Search, Tree, Matrix, Two Pointers, Bit Manipulation,
                              Binary Tree, Heap, Stack, ..."
-    echo ""                        
-    echo "  --help           Display this help message"
+    echo ""     
+    echo "  -a               Show only descriptions of filtered files, it need to be used with other flags"
+    echo ""                   
+    echo "  -h               Display this help message"
     echo ""
 }
 
+
 show_descriptions() {
     local found_files="$@"
-    if [ -z "$found_files" ]; then
-        echo "No files filtered."
-    else
-        for file in $found_files; do
-            echo "Description for file: $file"
-            sed -n '/^Description:/,/^$/p' "$file" | sed '1d;$d' | sed '/^\*\/$/d; /^"""$/d'
-            echo ""
-        done
-    fi
+    for file in $found_files; do
+        echo "Description for file: $file"
+        sed -n '/^Description:/,/^$/p' "$file" | sed '1d;$d' | sed '/^\*\/$/d; /^"""$/d'
+        echo ""
+    done
 }
 
 
@@ -33,7 +32,8 @@ show_descriptions() {
 filter_files_by_difficulty() {
     local found_files=$(find . -type f -exec grep -qw "Difficulty: $difficulty" {} \; -print)
     if [ -z "$found_files" ]; then
-        echo "No files found matching $difficulty difficulty."
+        echo -n "No files found matching $difficulty difficulty." >&2
+        exit 1
     else
         echo "$found_files"
     fi
@@ -43,7 +43,8 @@ filter_files_by_suffix() {
     # List files in current directory and subdirectories, filter based on the suffix
     local found_files=$(find . -type f -name "*$suffix")
     if [ -z "$found_files" ]; then
-        echo "No files found matching $suffix suffix."
+        echo "No files found matching $suffix suffix." >&2
+        exit 1
     else
         echo "$found_files"
     fi
@@ -52,7 +53,8 @@ filter_files_by_suffix() {
 filter_files_by_topic() {
     local found_files=$(find . -type f -exec grep -qw "Topics:.*$topic" {} \; -print)
     if [ -z "$found_files" ]; then
-        echo "No files found matching $topic topic."
+        echo "No files found matching $topic topic.">&2
+        exit 1
     else
         echo "$found_files"
     fi
@@ -61,7 +63,8 @@ filter_files_by_topic() {
 filter_files_by_suffix_and_difficulty() {
     local found_files=$(find . -type f -name "*$suffix" -exec grep -qw "Difficulty: $difficulty" {} \; -print)
     if [ -z "$found_files" ]; then
-        echo "No files found matching $suffix suffix with $difficulty difficulty."
+        echo "No files found matching $suffix suffix with $difficulty difficulty.">&2
+        exit 1
     else
         echo "$found_files"
     fi
@@ -70,7 +73,8 @@ filter_files_by_suffix_and_difficulty() {
 filter_files_by_difficulty_and_topic() {
     local found_files=$(find . -type f -exec grep -qw "Difficulty: $difficulty" {} \; -exec grep -qw "Topics:.*$topic" {} \; -print)
     if [ -z "$found_files" ]; then
-        echo "No files found matching $difficulty difficulty with $topic topic."
+        echo "No files found matching $difficulty difficulty with $topic topic.">&2
+        exit 1
     else
         echo "$found_files"
     fi
@@ -79,7 +83,8 @@ filter_files_by_difficulty_and_topic() {
 filter_files_by_suffix_and_topic() {
     local found_files=$(find . -type f -name "*$suffix" -exec grep -qw "Topics:.*$topic" {} \; -print)
     if [ -z "$found_files" ]; then
-        echo "No files found matching $suffix suffix with $topic topic."
+        echo "No files found matching $suffix suffix with $topic topic.">&2
+        exit 1
     else
         echo "$found_files"
     fi
@@ -89,7 +94,8 @@ filter_files_by_suffix_and_topic() {
 filter_files_by_suffix_and_difficulty_and_topic(){
     local found_files=$(find . -type f -name "*$suffix" -exec grep -qw "Difficulty: $difficulty" {} \; -exec grep -qw "Topics:.*$topic" {} \; -print)
     if [ -z "$found_files" ]; then
-        echo "No files found matching $suffix suffix with $difficulty difficulty and $topic topic."
+        echo "No files found matching $suffix suffix with $difficulty difficulty and $topic topic.">&2
+        exit 1
     else
         echo "$found_files"
     fi
@@ -104,7 +110,7 @@ while getopts ":d:s:t:ah" opt; do
     s) suffix="$OPTARG";; # Assigning the value of the -s flag
     t) topic="$OPTARG";; # Assigning the value of the -t flag
     a) show="true";;
-    h) help_function;;
+    h) help_function && exit 0;;
     :) echo "Option -$OPTARG requires an argument." >&2;;
     \?) echo "Invalid option: -$OPTARG" >&2;;
 
@@ -152,6 +158,5 @@ fi
 if [ -n "$show" ]; then
     show_descriptions "$found_files"
 else
-    echo "$found_files"
-    echo ""
+    echo "$found_files"    
 fi
