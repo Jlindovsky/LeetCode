@@ -7,6 +7,7 @@ in the number is one more than the previous digit.
 Return a sorted list of all the integers
 in the range [low, high] inclusive that have sequential digits.
 */
+
 #include <iostream>
 #include <vector>
 #include <algorithm>

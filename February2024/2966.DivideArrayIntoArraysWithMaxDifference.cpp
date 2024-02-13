@@ -10,6 +10,7 @@ Return a 2D array containing all the arrays.
 If it is impossible to satisfy the conditions,
 return an empty array. And if there are multiple answers, return any of them.
 */
+
 #include <iostream>
 #include <vector>
 #include <algorithm>

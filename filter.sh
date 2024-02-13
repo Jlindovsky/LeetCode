@@ -11,9 +11,24 @@ help_function(){
                              Depth-First Search, Binary Search, Tree, Matrix, Two Pointers, Bit Manipulation,
                              Binary Tree, Heap, Stack, ..."
     echo ""                        
-    echo "  -h               Display this help message"
+    echo "  --help           Display this help message"
     echo ""
 }
+
+show_descriptions() {
+    local found_files="$@"
+    if [ -z "$found_files" ]; then
+        echo "No files filtered."
+    else
+        for file in $found_files; do
+            echo "Description for file: $file"
+            sed -n '/^Description:/,/^$/p' "$file" | sed '1d;$d' | sed '/^\*\/$/d; /^"""$/d'
+            echo ""
+        done
+    fi
+}
+
+
 
 filter_files_by_difficulty() {
     local found_files=$(find . -type f -exec grep -qw "Difficulty: $difficulty" {} \; -print)
@@ -80,46 +95,63 @@ filter_files_by_suffix_and_difficulty_and_topic(){
     fi
 }
 
+found_files=""
+
 # Parsing command-line options
-while getopts ":d:s:t:h" opt; do
+while getopts ":d:s:t:ah" opt; do
   case $opt in
     d) difficulty="$OPTARG";; # Assigning the value of the -d flag
     s) suffix="$OPTARG";; # Assigning the value of the -s flag
     t) topic="$OPTARG";; # Assigning the value of the -t flag
-    h) help="open";;
+    a) show="true";;
+    h) help_function;;
+    :) echo "Option -$OPTARG requires an argument." >&2;;
     \?) echo "Invalid option: -$OPTARG" >&2;;
+
   esac
 done
+
+# Determine which function to call based on the provided flags
+# Your filtering logic...
 
 
 
 # Determine which function to call based on the provided flags
 if [ -n "$suffix" ] && [ -n "$difficulty" ] && [ -n "$topic" ]; then
     echo "Only $suffix files with $difficulty difficulty and $topic topic."
-    filter_files_by_suffix_and_difficulty_and_topic "$suffix" "$difficulty" "$topic"
+    echo ""
+    found_files=$(filter_files_by_suffix_and_difficulty_and_topic "$suffix" "$difficulty" "$topic")
 
 elif [ -n "$suffix" ] && [ -n "$difficulty" ]; then
     echo "Only $suffix files with $difficulty difficulty."
-    filter_files_by_suffix_and_difficulty "$suffix" "$difficulty"
+    echo ""
+    found_files=$(filter_files_by_suffix_and_difficulty "$suffix" "$difficulty")
 elif [ -n "$difficulty" ] && [ -n "$topic" ]; then
     echo "Only files with $difficulty difficulty and $topic topic."
-    filter_files_by_difficulty_and_topic "$difficulty" "$topic"
+    echo ""
+    found_files=$(filter_files_by_difficulty_and_topic "$difficulty" "$topic")
 elif [ -n "$suffix" ] && [ -n "$topic" ]; then
     echo "Only $suffix files with $topic topic."
-    filter_files_by_suffix_and_topic "$suffix" "$topic"
+    echo ""
+    found_files=$(filter_files_by_suffix_and_topic "$suffix" "$topic")
 
 elif [ -n "$topic" ]; then
     echo "Only files with $topic topic".
-    filter_files_by_topic "$topic"
+    echo ""
+    found_files=$(filter_files_by_topic "$topic")
 elif [ -n "$suffix" ]; then
     echo "Only $suffix files."
-    filter_files_by_suffix "$suffix" 
+    echo ""
+    found_files=$(filter_files_by_suffix "$suffix")
 elif [ -n "$difficulty" ]; then
     echo "Only files with $difficulty difficulty."
-    filter_files_by_difficulty "$difficulty"
+    echo ""
+    found_files=$(filter_files_by_difficulty "$difficulty")
+fi
 
-elif [ -n "$help" ]; then
-    help_function
+if [ -n "$show" ]; then
+    show_descriptions "$found_files"
 else
-    echo "No flags provided."
+    echo "$found_files"
+    echo ""
 fi
