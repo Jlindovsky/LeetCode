@@ -7,7 +7,6 @@ Welcome to my LeetCode solutions repository! Here you will find my solutions to 
 ### Start Date: February 1, 2024
 
 - **Longest Streak**: 23
-- **Current Strek**: 23
 
 In this repository, you will find solutions to LeetCode problems solved by me. Each program has its own description, including:
 
